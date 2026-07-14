@@ -1,0 +1,27 @@
+{
+  "name": "Portofolio Uvia Farhan Kumila",
+  "version": "1.0.0",
+  "description": "Portofolio profesional untuk Uvia Farhan Kumila - Spesialis Stock Administration & Inventory Control",
+  "author": {
+    "name": "Uvia Farhan Kumila",
+    "email": "Farhank2611@gmail.com",
+    "url": "https://linkedin.com/in/uvia-farhan-kumila"
+  },
+  "license": "MIT",
+  "keywords": [
+    "portfolio",
+    "warehouse",
+    "inventory",
+    "stock-administration",
+    "resume"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/hallohan805-max/Portofolio-Uvia-Farhan-Kumila"
+  },
+  "homepage": "https://hallohan805-max.github.io/Portofolio-Uvia-Farhan-Kumila/",
+  "scripts": {
+    "start": "open index.html",
+    "deploy": "git push origin main"
+  }
+}
