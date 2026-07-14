@@ -1,0 +1,647 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Uvia Farhan Kumila — Stock Administration &amp; Inventory Control</title>
+<meta name="description" content="Portofolio Uvia Farhan Kumila. Berpengalaman di administrasi gudang, kontrol inventori, WMS, dan SAP ERP.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=IBM+Plex+Mono:wght@400;500;600&family=IBM+Plex+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+
+  :root{
+    --ink:#23262B;
+    --paper:#F5F2EA;
+    --paper-2:#ECE6D8;
+    --steel:#5C6570;
+    --safety:#F2A71B;
+    --safety-dark:#C6820C;
+    --green:#3F6B4F;
+    --line:#CFC7B4;
+    --white:#FFFDF8;
+    --font-display: 'Archivo Black', sans-serif;
+    --font-body: 'IBM Plex Sans', sans-serif;
+    --font-mono: 'IBM Plex Mono', monospace;
+  }
+
+  *{box-sizing:border-box; margin:0; padding:0;}
+
+  html{scroll-behavior:smooth;}
+
+  body{
+    background:var(--paper);
+    color:var(--ink);
+    font-family:var(--font-body);
+    line-height:1.55;
+    -webkit-font-smoothing:antialiased;
+    background-image:
+      radial-gradient(circle at 1px 1px, rgba(35,38,43,0.06) 1px, transparent 0);
+    background-size: 22px 22px;
+  }
+
+  a{color:inherit;}
+
+  .wrap{
+    max-width:980px;
+    margin:0 auto;
+    padding:0 28px;
+  }
+
+  /* ---------- utility: bin tag ---------- */
+  .bin-tag{
+    display:inline-flex;
+    align-items:center;
+    gap:8px;
+    font-family:var(--font-mono);
+    font-size:12px;
+    letter-spacing:.08em;
+    text-transform:uppercase;
+    color:var(--steel);
+    border:1px solid var(--line);
+    padding:4px 10px;
+    background:var(--white);
+  }
+  .bin-tag::before{
+    content:"";
+    width:6px;height:6px;
+    background:var(--safety);
+    display:inline-block;
+  }
+
+  /* ---------- header / nav ---------- */
+  header{
+    position:sticky; top:0; z-index:50;
+    background:var(--paper);
+    border-bottom:1px solid var(--line);
+  }
+  .navbar{
+    display:flex; align-items:center; justify-content:space-between;
+    padding:16px 0;
+  }
+  .brand{
+    font-family:var(--font-mono);
+    font-weight:600;
+    font-size:14px;
+    letter-spacing:.04em;
+  }
+  .brand span{color:var(--safety-dark);}
+  nav ul{
+    list-style:none;
+    display:flex;
+    gap:26px;
+  }
+  nav a{
+    font-family:var(--font-mono);
+    font-size:12px;
+    text-transform:uppercase;
+    letter-spacing:.08em;
+    text-decoration:none;
+    color:var(--steel);
+    border-bottom:2px solid transparent;
+    padding-bottom:3px;
+    transition:border-color .2s, color .2s;
+  }
+  nav a:hover, nav a:focus-visible{
+    color:var(--ink);
+    border-color:var(--safety);
+  }
+  @media (max-width:640px){
+    nav ul{gap:14px;}
+    nav a{font-size:10px;}
+  }
+
+  /* ---------- hero ---------- */
+  .hero{
+    padding:72px 0 56px;
+    border-bottom:1px solid var(--line);
+    position:relative;
+    overflow:hidden;
+  }
+  .hero-grid{
+    display:grid;
+    grid-template-columns:1.5fr 1fr;
+    gap:40px;
+    align-items:start;
+  }
+  @media (max-width:800px){
+    .hero-grid{grid-template-columns:1fr;}
+  }
+
+  .eyebrow{
+    font-family:var(--font-mono);
+    font-size:12px;
+    letter-spacing:.1em;
+    text-transform:uppercase;
+    color:var(--green);
+    margin-bottom:18px;
+    display:flex; align-items:center; gap:10px;
+  }
+  .eyebrow::after{
+    content:"";
+    flex:1; height:1px; background:var(--line);
+  }
+
+  h1{
+    font-family:var(--font-display);
+    font-size:clamp(38px, 6vw, 62px);
+    line-height:1.02;
+    letter-spacing:-0.01em;
+    text-transform:uppercase;
+  }
+  .hero h1 .accent{color:var(--safety-dark);}
+
+  .hero-role{
+    font-family:var(--font-mono);
+    font-size:15px;
+    color:var(--steel);
+    margin-top:14px;
+    max-width:46ch;
+  }
+
+  .hero-desc{
+    margin-top:22px;
+    font-size:16px;
+    max-width:56ch;
+    color:#3a3d42;
+  }
+
+  .cta-row{
+    margin-top:30px;
+    display:flex;
+    gap:14px;
+    flex-wrap:wrap;
+  }
+  .btn{
+    font-family:var(--font-mono);
+    font-size:13px;
+    letter-spacing:.05em;
+    text-transform:uppercase;
+    text-decoration:none;
+    padding:13px 22px;
+    display:inline-flex;
+    align-items:center;
+    gap:8px;
+    border:1px solid var(--ink);
+    transition:transform .15s ease, background .15s ease, color .15s ease;
+  }
+  .btn-primary{
+    background:var(--ink);
+    color:var(--paper);
+  }
+  .btn-primary:hover{
+    transform:translateY(-2px);
+    background:var(--safety-dark);
+    border-color:var(--safety-dark);
+    color:var(--white);
+  }
+  .btn-ghost{
+    background:transparent;
+    color:var(--ink);
+  }
+  .btn-ghost:hover{
+    transform:translateY(-2px);
+    background:var(--ink);
+    color:var(--paper);
+  }
+
+  /* ---------- stamp card ---------- */
+  .stamp-card{
+    background:var(--white);
+    border:1px solid var(--line);
+    padding:22px;
+    position:relative;
+  }
+  .stamp-card::before{
+    content:"";
+    position:absolute; inset:8px;
+    border:1px dashed var(--line);
+    pointer-events:none;
+  }
+  .stamp-head{
+    font-family:var(--font-mono);
+    font-size:11px;
+    text-transform:uppercase;
+    letter-spacing:.1em;
+    color:var(--steel);
+    display:flex;
+    justify-content:space-between;
+    border-bottom:1px solid var(--line);
+    padding-bottom:10px;
+    margin-bottom:14px;
+  }
+  .stat-list{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:18px 0;
+  }
+  .stat{
+    padding:6px 0;
+  }
+  .stat-num{
+    font-family:var(--font-display);
+    font-size:30px;
+    color:var(--ink);
+  }
+  .stat-label{
+    font-family:var(--font-mono);
+    font-size:11px;
+    text-transform:uppercase;
+    letter-spacing:.06em;
+    color:var(--steel);
+    margin-top:2px;
+  }
+  .verified-stamp{
+    margin-top:16px;
+    display:inline-flex;
+    align-items:center;
+    gap:8px;
+    border:2px solid var(--green);
+    color:var(--green);
+    font-family:var(--font-mono);
+    font-size:11px;
+    text-transform:uppercase;
+    letter-spacing:.08em;
+    padding:6px 12px;
+    transform:rotate(-2deg);
+  }
+  .verified-stamp::before{content:"✓";font-weight:700;}
+
+  /* ---------- sections ---------- */
+  section{
+    padding:64px 0;
+    border-bottom:1px solid var(--line);
+  }
+  .section-head{
+    display:flex;
+    align-items:baseline;
+    gap:16px;
+    margin-bottom:34px;
+    flex-wrap:wrap;
+  }
+  .section-head h2{
+    font-family:var(--font-display);
+    font-size:clamp(24px,3.4vw,34px);
+    text-transform:uppercase;
+  }
+  .section-head .bin-tag{margin-left:auto;}
+
+  /* profil */
+  .profil-body{
+    display:grid;
+    grid-template-columns:2fr 1fr;
+    gap:40px;
+  }
+  @media (max-width:760px){.profil-body{grid-template-columns:1fr;}}
+  .profil-text p{font-size:16px; color:#3a3d42;}
+  .profil-side{
+    border-left:2px solid var(--safety);
+    padding-left:18px;
+  }
+  .profil-side dl{display:grid; grid-template-columns:auto 1fr; gap:6px 14px; font-size:13px;}
+  .profil-side dt{font-family:var(--font-mono); color:var(--steel); text-transform:uppercase; letter-spacing:.05em;}
+  .profil-side dd{font-weight:500;}
+
+  /* experience log */
+  .log-entry{
+    display:grid;
+    grid-template-columns:110px 1fr;
+    gap:26px;
+    padding:26px 0;
+    border-top:1px solid var(--line);
+  }
+  .log-entry:last-child{border-bottom:none;}
+  @media (max-width:640px){.log-entry{grid-template-columns:1fr;}}
+
+  .bin-code{
+    font-family:var(--font-mono);
+    font-size:13px;
+    color:var(--safety-dark);
+    background:var(--paper-2);
+    align-self:start;
+    padding:6px 8px;
+    border:1px solid var(--line);
+    text-align:center;
+  }
+  .log-role{
+    font-family:var(--font-display);
+    font-size:19px;
+    text-transform:uppercase;
+    margin-bottom:2px;
+  }
+  .log-meta{
+    font-family:var(--font-mono);
+    font-size:12px;
+    color:var(--steel);
+    margin-bottom:14px;
+    text-transform:uppercase;
+    letter-spacing:.04em;
+  }
+  .log-list{
+    list-style:none;
+    display:grid;
+    gap:8px;
+  }
+  .log-list li{
+    position:relative;
+    padding-left:18px;
+    font-size:15px;
+    color:#3a3d42;
+  }
+  .log-list li::before{
+    content:"—";
+    position:absolute; left:0; color:var(--safety-dark);
+  }
+
+  /* skills */
+  .tag-grid{
+    display:flex;
+    flex-wrap:wrap;
+    gap:10px;
+  }
+  .tag{
+    font-family:var(--font-mono);
+    font-size:12.5px;
+    text-transform:uppercase;
+    letter-spacing:.04em;
+    border:1px dashed var(--steel);
+    padding:8px 14px;
+    background:var(--white);
+    color:var(--ink);
+  }
+
+  /* education */
+  .edu-card{
+    display:flex;
+    gap:24px;
+    align-items:baseline;
+    flex-wrap:wrap;
+  }
+  .edu-card h3{
+    font-family:var(--font-display);
+    font-size:19px;
+    text-transform:uppercase;
+  }
+  .edu-meta{
+    font-family:var(--font-mono);
+    font-size:12px;
+    color:var(--steel);
+    text-transform:uppercase;
+  }
+
+  /* contact — shipping label */
+  .label-card{
+    background:var(--white);
+    border:2px solid var(--ink);
+    padding:0;
+    max-width:640px;
+  }
+  .label-row{
+    display:grid;
+    grid-template-columns:120px 1fr;
+    border-bottom:1px solid var(--line);
+  }
+  .label-row:last-child{border-bottom:none;}
+  .label-key{
+    font-family:var(--font-mono);
+    font-size:11px;
+    text-transform:uppercase;
+    letter-spacing:.08em;
+    color:var(--paper);
+    background:var(--ink);
+    padding:14px 12px;
+  }
+  .label-val{
+    padding:14px 16px;
+    font-size:15px;
+  }
+  .label-val a{text-decoration:none; border-bottom:1px solid var(--safety-dark);}
+
+  footer{
+    padding:36px 0 60px;
+    text-align:center;
+    font-family:var(--font-mono);
+    font-size:11px;
+    color:var(--steel);
+    letter-spacing:.05em;
+    text-transform:uppercase;
+  }
+
+  /* reveal on scroll */
+  .reveal{
+    opacity:0;
+    transform:translateY(14px);
+    transition:opacity .6s ease, transform .6s ease;
+  }
+  .reveal.in{opacity:1; transform:none;}
+
+  @media (prefers-reduced-motion: reduce){
+    .reveal{opacity:1; transform:none; transition:none;}
+    html{scroll-behavior:auto;}
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="wrap navbar">
+    <div class="brand">UFK<span>/</span>2026</div>
+    <nav>
+      <ul>
+        <li><a href="#profil">Profil</a></li>
+        <li><a href="#pengalaman">Pengalaman</a></li>
+        <li><a href="#keahlian">Keahlian</a></li>
+        <li><a href="#kontak">Kontak</a></li>
+      </ul>
+    </nav>
+  </div>
+</header>
+
+<section class="hero">
+  <div class="wrap hero-grid">
+    <div>
+      <div class="eyebrow">Manifest Profil — 2026</div>
+      <h1>Uvia Farhan<br><span class="accent">Kumila</span></h1>
+      <p class="hero-role">Stock Administration · Inventory Control · Warehouse Operations</p>
+      <p class="hero-desc">Berpengalaman di bidang manufaktur dan pergudangan dengan fokus pada administrasi persediaan, pengendalian inventori, dan operasional gudang. Terbiasa mengoperasikan SAP ERP dan Warehouse Management System (WMS), serta menyusun laporan inventori yang akurat dan tepat waktu.</p>
+      <div class="cta-row">
+        <a class="btn btn-primary" href="mailto:Farhank2611@gmail.com">Hubungi Saya</a>
+        <a class="btn btn-ghost" href="https://linkedin.com/in/uvia-farhan-kumila" target="_blank" rel="noopener">Lihat LinkedIn</a>
+      </div>
+    </div>
+
+    <div class="stamp-card reveal">
+      <div class="stamp-head">
+        <span>Kartu Stok</span>
+        <span>No. 001</span>
+      </div>
+      <div class="stat-list">
+        <div class="stat">
+          <div class="stat-num">5+</div>
+          <div class="stat-label">Tahun Pengalaman</div>
+        </div>
+        <div class="stat">
+          <div class="stat-num">2</div>
+          <div class="stat-label">Perusahaan Manufaktur</div>
+        </div>
+        <div class="stat">
+          <div class="stat-num">SAP</div>
+          <div class="stat-label">ERP &amp; WMS</div>
+        </div>
+        <div class="stat">
+          <div class="stat-num">K3</div>
+          <div class="stat-label">Standar Keselamatan</div>
+        </div>
+      </div>
+      <div class="verified-stamp">Data Terverifikasi</div>
+    </div>
+  </div>
+</section>
+
+<section id="profil">
+  <div class="wrap">
+    <div class="section-head">
+      <h2>Profil</h2>
+      <span class="bin-tag">Sec. A</span>
+    </div>
+    <div class="profil-body">
+      <div class="profil-text reveal">
+        <p>Berpengalaman di bidang manufaktur dan pergudangan dengan fokus pada administrasi persediaan, pengendalian inventori, dan operasional gudang. Memiliki pemahaman dalam penggunaan Google Sheet, Warehouse Management System (WMS), dan Microsoft Excel untuk mendukung pengelolaan data serta proses administrasi yang akurat.</p>
+        <p style="margin-top:14px;">Terbiasa melakukan stock opname, penyusunan laporan inventori, dan koordinasi operasional sesuai dengan prosedur perusahaan. Memiliki pengalaman bekerja dalam lingkungan yang mengutamakan ketelitian, konsistensi, dan kepatuhan terhadap standar operasional.</p>
+      </div>
+      <div class="profil-side reveal">
+        <dl>
+          <dt>Domisili</dt><dd>Kec. Pringapus, Kab. Semarang, Jawa Tengah</dd>
+          <dt>Status</dt><dd>Belum Menikah</dd>
+          <dt>Telepon</dt><dd>0881-3776-366</dd>
+          <dt>Email</dt><dd>Farhank2611@gmail.com</dd>
+        </dl>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="pengalaman">
+  <div class="wrap">
+    <div class="section-head">
+      <h2>Log Pengalaman Kerja</h2>
+      <span class="bin-tag">Sec. B</span>
+    </div>
+
+    <div class="log-entry reveal">
+      <div class="bin-code">A-01<br>2024–25</div>
+      <div>
+        <div class="log-role">Stok Gudang Jadi</div>
+        <div class="log-meta">PT Industri Jamu dan Farmasi Sido Muncul Tbk · Des 2024 – Des 2025</div>
+        <ul class="log-list">
+          <li>Mengelola administrasi keluar dan masuk barang sesuai SOP perusahaan.</li>
+          <li>Melakukan stock opname untuk memastikan akurasi data persediaan.</li>
+          <li>Mengoperasikan SAP ERP dan Warehouse Management System (WMS) dalam pengelolaan stok.</li>
+          <li>Menyusun laporan persediaan harian dan bulanan menggunakan Microsoft Excel.</li>
+          <li>Berkoordinasi dengan tim gudang, produksi, dan distribusi untuk menjaga kelancaran operasional.</li>
+          <li>Memastikan data inventori terdokumentasi secara akurat dan tepat waktu.</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="log-entry reveal">
+      <div class="bin-code">A-02<br>2020–24</div>
+      <div>
+        <div class="log-role">Operator Produksi</div>
+        <div class="log-meta">PT Pinako Rotari Permai · Nov 2020 – Nov 2024</div>
+        <ul class="log-list">
+          <li>Mengoperasikan mesin produksi sesuai Standar Operasional Prosedur (SOP).</li>
+          <li>Memastikan kualitas produk sesuai standar perusahaan.</li>
+          <li>Menjalankan proses produksi untuk memenuhi target harian.</li>
+          <li>Melaksanakan pemeriksaan kondisi mesin sebelum dan sesudah produksi.</li>
+          <li>Menerapkan prosedur Keselamatan dan Kesehatan Kerja (K3) di area produksi.</li>
+          <li>Bekerja sama dengan tim untuk menjaga efisiensi dan kelancaran proses produksi.</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="keahlian">
+  <div class="wrap">
+    <div class="section-head">
+      <h2>Keahlian</h2>
+      <span class="bin-tag">Sec. C</span>
+    </div>
+    <div class="tag-grid reveal">
+      <span class="tag">Warehouse Management System</span>
+      <span class="tag">SAP ERP</span>
+      <span class="tag">Inventory Control</span>
+      <span class="tag">Stock Administration</span>
+      <span class="tag">Stock Opname</span>
+      <span class="tag">Microsoft Excel</span>
+      <span class="tag">Google Sheet</span>
+      <span class="tag">Data Entry</span>
+      <span class="tag">Inventory Reporting</span>
+      <span class="tag">K3 / Keselamatan Kerja</span>
+      <span class="tag">Communication</span>
+      <span class="tag">Teamwork</span>
+    </div>
+  </div>
+</section>
+
+<section id="pendidikan">
+  <div class="wrap">
+    <div class="section-head">
+      <h2>Riwayat Pendidikan</h2>
+      <span class="bin-tag">Sec. D</span>
+    </div>
+    <div class="edu-card reveal">
+      <h3>SMK NU Roudlotul Furqon</h3>
+      <span class="edu-meta">Teknik Komputer dan Jaringan (TKJ) · Lulus 2020</span>
+    </div>
+  </div>
+</section>
+
+<section id="kontak" style="border-bottom:none;">
+  <div class="wrap">
+    <div class="section-head">
+      <h2>Kontak</h2>
+      <span class="bin-tag">Sec. E</span>
+    </div>
+    <div class="label-card reveal">
+      <div class="label-row">
+        <div class="label-key">Nama</div>
+        <div class="label-val">Uvia Farhan Kumila</div>
+      </div>
+      <div class="label-row">
+        <div class="label-key">Telepon</div>
+        <div class="label-val"><a href="tel:+6288137766366">0881-3776-366</a></div>
+      </div>
+      <div class="label-row">
+        <div class="label-key">Email</div>
+        <div class="label-val"><a href="mailto:Farhank2611@gmail.com">Farhank2611@gmail.com</a></div>
+      </div>
+      <div class="label-row">
+        <div class="label-key">LinkedIn</div>
+        <div class="label-val"><a href="https://linkedin.com/in/uvia-farhan-kumila" target="_blank" rel="noopener">linkedin.com/in/uvia-farhan-kumila</a></div>
+      </div>
+      <div class="label-row">
+        <div class="label-key">Domisili</div>
+        <div class="label-val">Kec. Pringapus, Kab. Semarang, Jawa Tengah</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  Uvia Farhan Kumila — Portofolio Profesional · Diperbarui 2026
+</footer>
+
+<script>
+  const items = document.querySelectorAll('.reveal');
+  const obs = new IntersectionObserver((entries)=>{
+    entries.forEach(e=>{
+      if(e.isIntersecting){ e.target.classList.add('in'); obs.unobserve(e.target); }
+    });
+  }, {threshold:0.15});
+  items.forEach(i=>obs.observe(i));
+</script>
+
+</body>
+</html>
